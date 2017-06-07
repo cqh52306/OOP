@@ -23,6 +23,7 @@
 ### 构造函数属性-constructor
 
   constructor 每个对象在创建时都自动拥有一个构造函数属性，指向创建它的构造函数  
+  (对象字面量或者Object构造函数创建出来的对象，其构造属性指向Object)
 ```js 
   function Person(){
     //...
@@ -30,3 +31,38 @@
   var person1 = new Person();
   console.log(person1.constructor === Person) // true
 ```
+
+### 构造函数的检测
+
+  1. constructor（构造函数属性容易被覆盖，不完全准确）  
+  2. instanceof（推荐使用）
+```js 
+  function Person(){
+    //...
+  }
+  var person1 = new Person();
+  console.log(person1 instanceof Person) //true
+```
+
+### 目的
+
+  使用构造函数的目的是为了轻松创建许多拥有相同属性和方法的对象
+```js 
+  function Person(name){
+    this.name = name;
+    this.sayName = function(){
+      console.log(this.name)
+    }
+  }
+  var person1 = new Person('张三');
+  var person2 = new Person('李四');
+
+  console.log(person1.name); //张三
+  console.log(person2.name); //李四
+
+  person1.sayName(); //张三
+  person2.sayName(); //李四
+```
+  * 注意：在构造函数中显式调用return 如果返回值是一个对象，它会代替新创建的
+  对象实例返回；如果返回值是一个原始类型，这个原始类型返回值会被忽略，新创建的
+  对象实例会被返回
