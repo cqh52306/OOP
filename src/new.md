@@ -65,4 +65,34 @@
 ```
   * 注意：在构造函数中显式调用return 如果返回值是一个对象，它会代替新创建的
   对象实例返回；如果返回值是一个原始类型，这个原始类型返回值会被忽略，新创建的
-  对象实例会被返回
+  对象实例会被返回  
+
+  严格模式下不适用new操作符调用构造函数会报错，因为不适用new操作符this相当于绑定在
+  window上的，而严格模式下没有为全局对象设置this  
+```js 
+  function Person(name){
+    Object.defineProperty(this,'name',{
+      get:function(){
+        return name;
+      },
+      set:function(newName){
+        name = newName;
+      },
+      enumerable:true,
+      configurable:true
+    })
+    this.sayName = function(){
+      console.log(this.name)
+    }
+  }
+  var person1 = Person('张三');
+
+  console.log(person1 instanceof Person); //false
+  console.log(typeof person1); //undefined
+  console.log(name); // 張三
+```
+
+  构造函数允许给对象配置同样的属性，但构造函数并没有消除代码冗余 例：  
+  一个构造函数有一个sayName方法，那么100个实例就有100个sayName方法  
+
+  这就需要引入原型对象了...
