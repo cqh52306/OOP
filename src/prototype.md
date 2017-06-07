@@ -19,16 +19,16 @@
 
 ```js 
   function hasPrototypeProperty(object,name){
-    return name in object && !object.hasOwnProperty(name);
+    return name in object && !object.hasWOwnProperty(name);
   }
 ```
 
 ### [[Ptototype]]
 
-  一个对象实例通过内部属性[[Prototype]]跟踪其原型对象，该属性是一个指向该实例使用的原型对象的指针  
-  用new创建一个新的对象时，构造函数的原型对象 就会被赋值给 该对象的[[Prototype]]属性
+  一个对象实例通过内部属性`[[Prototype]]`跟踪其原型对象，该属性是一个指向该实例使用的原型对象的指针  
+  用new创建一个新的对象时，构造函数的原型对象 就会被赋值给 该对象的`[[Prototype]]`属性
 
-### 读取[[Ptototype]]
+### 读取`[[Ptototype]]`
 
   1. Object.getPrototypeOf()
 ```js 
@@ -37,7 +37,7 @@
   console.log(prototype === Object.prototype)//true
 ```
   2. __proto__
-  __proto__可以直接读写[[Prototype]]属性
+  __proto__可以直接读写`[[Prototype]]`属性
 
 ### 检测原型对象
 
@@ -50,5 +50,5 @@
 ### 原型链
 
   当读取一个对象的属性时，JavaScript引擎首先在该对象的自有属性中查找属性名字，如果找到则返回。如果自有属性
-中不包含该名字，这JavaScript会搜索[[Prototype]]中的对象，找到返回找不到则继续向上查找，找到顶层  
+中不包含该名字，这JavaScript会搜索`[[Prototype]]`中的对象，找到返回找不到则继续向上查找，找到顶层  
 （Object.prototype.__proto__==>null）还是没有则返回undefined，这个查找的过程形成的链路就称之为原型链
