@@ -6,6 +6,7 @@
 ## 目录
 
 1. [构造函数](https://github.com/cqh52306/OOP/blob/master/src/new.md)
+1. [原型对象/原型链](https://github.com/cqh52306/OOP/blob/master/src/prorotype.md)
 
 
 
