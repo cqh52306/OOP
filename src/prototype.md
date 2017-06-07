@@ -52,3 +52,23 @@
   当读取一个对象的属性时，JavaScript引擎首先在该对象的自有属性中查找属性名字，如果找到则返回。如果自有属性
 中不包含该名字，这JavaScript会搜索`[[Prototype]]`中的对象，找到返回找不到则继续向上查找，找到顶层  
 （Object.prototype.__proto__==>null）还是没有则返回undefined，这个查找的过程形成的链路就称之为原型链
+
+### 在构造函数中使用原型对象
+
+  原型对象的共享机制使得它们成为一次性为所有对象定义方法的理想手段
+```js 
+  function Person(name){
+    this.name = name;
+  }
+  Person.prototype.sayName = function(){
+    console.log(this.name)
+  }
+  var person1 = new Person('张三');
+  var person2 = new Person('李四');
+
+  console.log(person1.name) //张三
+  console.log(person2.name) //李四
+
+  person1.sayName(); //张三
+  person2.sayName(); //李四
+```
